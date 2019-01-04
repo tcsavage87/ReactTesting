@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>  
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>React - Component</title>
+	</head>
+	<body>
+		<div id="first-example"></div>
+		<div id="second-example"></div>
+
+
+		<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  		<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+	    <script src="../../js/browser.min.js"></script>
+
+	    <script type="text/babel">
+	    	const exampleOne = document.querySelector('#first-example');
+	    	const exampleTwo = document.querySelector('#second-example');
+	    	
+	    	class Test extends React.Component {
+	    		render() {
+	    			return <h2>And, Using ES6 Class Structure</h2>;
+	    		}
+	    	}
+
+	    	function Welcome() {
+	    		return <h1>Welcome to React, using Function Components</h1>;
+	    	}
+
+	    	ReactDOM.render(<Welcome />, exampleOne);
+
+	    	ReactDOM.render(<Test />, exampleTwo);
+	    </script>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>  
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>React - Component</title>
+	</head>
+	<body>
+		<div id="example"></div>
+
+
+		<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  		<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+	    <script src="../../js/browser.min.js"></script>
+
+	    <script type="text/babel">
+	    	//Every component can only return one parent element, so nest within parents
+
+	    	const example = document.querySelector('#example');
+	    	
+	    	function Welcome() {
+	    		return (
+	    			<div>
+	    				<h1>Welcome to React - first nested element</h1>
+	    				<h2>Second element nested in parent element</h2>
+	    			</div>
+	    		);
+	    	}
+
+	    	function Break() {
+	    		return <h3>Break in text</h3>;
+	    	}
+
+	    	//To render multiple components, nest in render() within a div
+	    	//Can render same or different components multiple times within same parent div
+	    	
+	    	ReactDOM.render(<div>
+	    		<Welcome />
+	    		<Break />
+	    		<Welcome />
+	    	</div>, example);
+
+	    </script>
+	</body>
+</html>
