@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>  
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>React - Props</title>
+	</head>
+	<body>
+		<div id="app"></div>
+
+
+		<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  		<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+	    <script src="../../js/browser.min.js"></script>
+
+	    <script type="text/babel">
+
+	    // Use props to pass varying values and make reusable components
+
+	    // When defining component, use {} around properties and label with this.props.nameOfProp
+
+	    class Movie extends React.Component {
+	    	render () {
+	    		return (
+	    			<div>
+	    				<h1>{this.props.title}</h1>
+	   					<h2>{this.props.genre}</h2>
+	   				</div>
+	   			);
+	   		}
+	    }
+
+	    // In .render() method, in component call, pass properties with values in "" and the property will fill in the placeholder from the Component
+
+	    // Can render multiple components with different property values in one render method
+	    	
+	    ReactDOM.render(
+	    	<div>
+	    		<Movie title="Avatar" genre="Action" />
+	    		<Movie title="LA Confidential" genre="Crime" />
+	    		<Movie title="Lord of the Rings" genre="Fantasy" />
+	    	</div>
+	    	, document.getElementById('app'));
+
+	    </script>
+	</body>
+</html>
