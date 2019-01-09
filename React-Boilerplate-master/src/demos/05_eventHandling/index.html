@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>  
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>React - Event Handling</title>
+		<link rel="stylesheet" type="text/css" href="../../css/main.css">
+	</head>
+	<body>
+		<div id="container"></div>
+		<div id="container2"></div>
+
+
+		<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  		<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+	    <script src="../../js/browser.min.js"></script>
+
+	    <script type="text/babel">
+
+	    // If using function notation, functions within Component must be declared with function keyword and called with functionName via onClick
+
+	    	function Comment() {
+	    		function edit() {
+	    			alert('Editing comment');
+	    		}
+
+	    		function remove() {
+	    			alert('Removing comment');
+	    		}
+
+	    		return (
+	    			<div className="commentContainer">
+	    				<div className="commentText">Text</div>
+	    				<button onClick={edit} className="button-primary">Edit</button>
+	    				<button onClick={remove} className="button-danger">Remove</button>
+	    			</div>
+	    		);
+
+	    	}
+
+	    // If using ES6 notation, functions don't require keyword, and called with this.functionName for event listeners like onClick
+
+	    	class Comment2 extends React.Component {
+	    		edit() {
+	    			alert('Editing comment');
+	    		}
+
+	    		remove() {
+	    			alert('Removing comment');
+	    		}
+
+	    		render() {
+	    			return(
+		    			<div className="commentContainer">
+		    				<div className="commentText">Text</div>
+		    				<button onClick={this.edit} className="button-primary">Edit</button>
+		    				<button onClick={this.remove} className="button-danger">Remove</button>
+		    			</div>
+	    			);
+	    		}
+	    	}
+
+
+	    	ReactDOM.render(
+	    		<div className="board">
+	    			<Comment />
+	    		</div>
+	    		, document.getElementById('container'));
+
+	    	ReactDOM.render(
+	    		<div className="board">
+	    			<Comment2 />
+	    		</div>
+	    		, document.getElementById('container2'));
+
+	    </script>
+	</body>
+</html>
