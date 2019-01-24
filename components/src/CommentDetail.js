@@ -15,7 +15,7 @@ const CommentDetail = props => {
 			</div>
 		</div>
 	);
-}
+};
 
 // Props - system for passing data from parent to child/nested component
 	// Goal to communicate data to customize child component

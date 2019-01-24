@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import faker from 'faker';
+import ApprovalCard from './ApprovalCard';
 import CommentDetail from './CommentDetail';
 
 // to make resuable configurable component
@@ -13,31 +14,37 @@ import CommentDetail from './CommentDetail';
 const App = () => {
 	return (
 		<div className="ui container comments">
-			<CommentDetail 
+			<ApprovalCard>
+				<CommentDetail 
 				avatar={faker.image.avatar()} 
 				author="Sam" 
 				time="Yesterday at 6:00pm" 
 				textComment="Nice blog post!" 
-			/>
-			<CommentDetail 
-				avatar={faker.image.avatar()} 
-				author="Becky" 
-				time="Today at 6:15pm" 
-				textComment="Very helpful" 
-			/>
-			<CommentDetail 
-				avatar={faker.image.avatar()} 
-				author="Tina" 
-				time="Today at 7:03pm" 
-				textComment="Thanks for posting" 
-			/>
+				/>
+			</ApprovalCard>
+			<ApprovalCard>
+				<CommentDetail 
+					avatar={faker.image.avatar()} 
+					author="Becky" 
+					time="Today at 6:15pm" 
+					textComment="Very helpful" 
+				/>
+			</ApprovalCard>
+			<ApprovalCard>
+				<CommentDetail 
+					avatar={faker.image.avatar()} 
+					author="Tina" 
+					time="Today at 7:03pm" 
+					textComment="Thanks for posting" 
+				/>
+			</ApprovalCard>
 		</div>
 	);
 };
 
 // Define props within parent component by passing attribute into JSX tag
-
-// To show component within another, use JSX tag
+	// To show component within another, use JSX tag
+	// To pass component as a prop within another component, remove self closing tag and use <Component> </Component> and pass between tags
 
 ReactDOM.render(<App />, document.querySelector('#root'));
 
