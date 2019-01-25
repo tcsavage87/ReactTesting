@@ -11,9 +11,22 @@ import CommentDetail from './CommentDetail';
 	// create new component in file, paste jsx inside
 	// make configurable by using 'props'
 
+// Functional Components - use for simple content, displaying HTML to user
+
+// Class Components - use for logic, more complex content
+	// Easier code organization
+	// Can use states --> handle user input
+	// Understands lifecycle events 
+
 const App = () => {
 	return (
 		<div className="ui container comments">
+			<ApprovalCard>
+				<div>
+					<h4>Warning!</h4>
+					Are you sure you want to quit?
+				</div>
+			</ApprovalCard>
 			<ApprovalCard>
 				<CommentDetail 
 				avatar={faker.image.avatar()} 
