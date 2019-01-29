@@ -2,7 +2,7 @@
 	// Use geolocation API built into browsers
 	// window.navigator.geolocation.getCurrentPosition() takes 2 arguments
 		// 1. Success handling, 2. Error handling
-		// position.coords.latitude used to determine hemisphere: if 
+		// position.coords.latitude used to determine hemisphere
 
 // In order to pass latitude into JSX content must use class based component
 	// Geolocation call takes time, and might return after JSX gets rendered
@@ -22,6 +22,13 @@
 	// 4. State must be initialized upon component creation
 	// 5. State can only be updated using setState()
 
+// Component Lifecycle - series of methods governing course of component existence
+	// constructor - one-time setup (state init)
+	// render - required, return JSX
+	// componentDidMount - called after component renders on screen, data-loading or outside process
+	// componentDidUpdate - called after component updates/re-renders, data-loading after state/props change
+	// componentWillUnmount - called after component removed from DOM
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -32,18 +39,23 @@ class App extends React.Component {
 		super(props); 
 
 		// initialization of state object, only time direct assignment
-		this.state = { lat: null, hemisphere: '', errorMessage: '' }; 
-		
+		// this.state = { lat: null, errorMessage: '' };
+	}
+
+	// Can also define state outside of constructor
+	state = { lat: null, errorMessage: '' };
+
+	componentDidMount() {
 		window.navigator.geolocation.getCurrentPosition(
-			position => {
-				// call setState() to update state object when success, pass object with update to object
-				this.setState({	lat: position.coords.latitude });
-			},
-			err => {
-				this.setState({ errorMessage: err.message });
-			}
+			position => this.setState({	lat: position.coords.latitude }),
+			err => this.setState({ errorMessage: err.message })
 		);
 	}
+
+	componentDidUpdate() {
+		console.log('Component was updated');
+	}
+
 	// React requires that we define render
 	render() {	
 		// Conditional rendering - returning different JSX depending on state of component
