@@ -31,7 +31,8 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SeasonDisplay from './SeasonDisplay'
+import SeasonDisplay from './SeasonDisplay';
+import Loader from './Loader';
 
 class App extends React.Component {
 	// First function called on instance of class is constructor to initialize state
@@ -57,9 +58,8 @@ class App extends React.Component {
 		console.log('Component was updated');
 	}
 
-	// React requires that we define render
-	render() {	
-		// Conditional rendering - returning different JSX depending on state of component
+	renderContent() {
+	// Conditional rendering - returning different JSX depending on state of component.  Avoid multiple return statements in render(), place logic in helper function
 		if (this.state.errorMessage && !this.state.lat) {
 			return <div>Error: {this.state.errorMessage}</div>;
 		}
@@ -69,11 +69,17 @@ class App extends React.Component {
 			return <SeasonDisplay lat={this.state.lat} />;
 		}
 	
+		return <Loader message="Awaiting your approval..." />;
+	}
+
+	// React requires that we define render
+	render() {	
 		return (
-			<div>
-				<h1>Loading...<i className="spinner loading icon" /></h1>
+			<div className="border red">
+				{this.renderContent()}
 			</div>
 		);
+		
 	}
 }
 
