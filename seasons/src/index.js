@@ -31,6 +31,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SeasonDisplay from './SeasonDisplay'
 
 class App extends React.Component {
 	// First function called on instance of class is constructor to initialize state
@@ -63,11 +64,16 @@ class App extends React.Component {
 			return <div>Error: {this.state.errorMessage}</div>;
 		}
 
+		// Can pass state as a prop to another component
 		if (!this.state.errorMessage && this.state.lat) {
-			return <div>Latitude: {this.state.lat}</div>;
+			return <SeasonDisplay lat={this.state.lat} />;
 		}
 	
-		return <div>Loading...</div>;
+		return (
+			<div>
+				<h1>Loading...<i className="spinner loading icon" /></h1>
+			</div>
+		);
 	}
 }
 
