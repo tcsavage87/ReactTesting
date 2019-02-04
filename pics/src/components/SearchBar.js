@@ -1,4 +1,3 @@
-import './SearchBar.css';
 import React from 'react';
 
 // Event handlers

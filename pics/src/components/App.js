@@ -2,6 +2,7 @@ import React from 'react';
 // 3rd party imports typically above dev created file imports
 import unsplash from '../api/unsplash';
 import SearchBar from './SearchBar';
+import ImageList from './ImageList.js';
 
 // AJAX request to handle data must be handled outside of React: axios or fetch
 	// axios is 3rd party package (NPM) with pre-written code to handle network requests 
@@ -34,6 +35,7 @@ class App extends React.Component {
 			<div className="ui container" style={{marginTop: '10px'}}>
 				<SearchBar runOnSubmit={this.onSearchSubmit} />
 				Found: {this.state.images.length} images
+				<ImageList />
 			</div>
 		);
 	}
