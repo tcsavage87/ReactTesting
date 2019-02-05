@@ -3,8 +3,8 @@
 	display: grid;
 	/* Grid template columns - 1fr is max allocation of space */
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-	grid-gap: 10px; /* Creates margin for grid slots */
-	grid-auto-rows: 150px; /* Designates how tall each cell will be */
+	grid-gap: 0 10px; /* Creates margin for grid slots */
+	grid-auto-rows: 10px; /* Designates how tall each cell will be */
 }
 
 /* Css alone can't fix image laout because dependent on size of each image */
