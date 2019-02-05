@@ -1,0 +1,15 @@
+/* Grid system - utilizes grid slots to place elements within */
+.image-list {
+	display: grid;
+	/* Grid template columns - 1fr is max allocation of space */
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	grid-gap: 10px; /* Creates margin for grid slots */
+	grid-auto-rows: 150px; /* Designates how tall each cell will be */
+}
+
+/* Css alone can't fix image laout because dependent on size of each image */
+/* Must write custom grid-row-end rule for each image in React */
+
+.image-list img {
+	width: 250px;
+}
