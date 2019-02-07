@@ -10,6 +10,12 @@ class App extends React.Component {
 
   state = { videos: [], selectedVideo: null };
 
+  // Create default search upon componentMount
+
+  componentDidMount = () => {
+    this.onTermSubmit('bebop jazz');
+  }
+
   // API request is asynchronous operation
     // Asynchronous operations require promises or async/await
     // Async - designate function as async
@@ -21,23 +27,30 @@ class App extends React.Component {
         q: term
       }
     });
-    this.setState({ videos: response.data.items });
+    this.setState({ 
+      videos: response.data.items, 
+      selectedVideo:  response.data.items[0]
+    });
   };
 
   onVideoSelect = (video) => {
     this.setState({ selectedVideo: video });
   };
 
-  resetVideo = () => {
-    this.setState({ selectedVideo: null });
-  };
-
   render() {
     return (
       <div className="ui container">
         <SearchBar formSubmit={this.onTermSubmit} resetVideo={this.resetVideo} />
-        <VideoDetail selectedVideo={this.state.selectedVideo} />
-        <VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos} />
+        <div className="ui grid">
+          <div className="ui row">
+            <div className="eleven wide column">
+              <VideoDetail selectedVideo={this.state.selectedVideo} />
+            </div>
+            <div className="five wide column">
+              <VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos} />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

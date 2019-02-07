@@ -7,7 +7,6 @@ class SearchBar extends React.Component {
 		e.preventDefault();
 		this.props.formSubmit(this.state.term);
 		this.setState({ term: '' });
-		this.props.resetVideo();
 	};
 
 	onInputChange = e => {
@@ -17,10 +16,7 @@ class SearchBar extends React.Component {
 	render() {
 		return (
 			<div className="search-bar ui segment">
-				<form 
-					className="ui form"
-					onSubmit={this.onFormSubmit}
-				>
+				<form className="ui form" onSubmit={this.onFormSubmit}>
 					<div className="field">
 						<label>Video Search</label>
 						<input 

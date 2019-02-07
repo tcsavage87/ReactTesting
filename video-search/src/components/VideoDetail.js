@@ -5,15 +5,18 @@ const VideoDetail = ({ selectedVideo }) => {
 	if (!selectedVideo) {
 		return <div>Loading...</div>
 	}
-	const url = `https://youtube.com/embed/${selectedVideo.id.videoId}`;
+	const embedUrl = `https://youtube.com/embed/${selectedVideo.id.videoId}`;
+	const sourceUrl = `https://youtube.com/${selectedVideo.id.videoId}`;
 
 	return (
 		<div>
 			<div className="ui embed">
-				<iframe src={url}></iframe>
+				<iframe src={embedUrl} title='video player'/>
 			</div>
 			<div className="ui segment">
-				<h4 className="ui header">{selectedVideo.snippet.title}</h4>
+				<a target="_blank" href={sourceUrl}>
+					<h4 className="ui header">{selectedVideo.snippet.title}</h4>
+				</a>
 				<p>{selectedVideo.snippet.description}</p>
 			</div>
 		</div>
