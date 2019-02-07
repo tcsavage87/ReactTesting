@@ -7,6 +7,7 @@ class SearchBar extends React.Component {
 		e.preventDefault();
 		this.props.formSubmit(this.state.term);
 		this.setState({ term: '' });
+		this.props.resetVideo();
 	};
 
 	onInputChange = e => {
