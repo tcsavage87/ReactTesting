@@ -5,13 +5,25 @@ import youtube from '../apis/youtube'
 import React from 'react';
 
 class App extends React.Component {
+
+  // Default state to datatype you expect it to be
+
+  state = { videos: [] };
+
+  // API request is asynchronous operation
+    // Asynchronous operations require promises or async/await
+    // Async - designate function as async
+    // Await - used to pause execution of function until promise is resolved, then returns value 
   
   onTermSubmit = async term => {
-    youtube.get('/search', {
+
+    const response = await youtube.get('/search', {
       params: {
         q: term
       }
     });
+
+    this.setState({ videos: response.data.items });
   };
 
   render() {
@@ -20,6 +32,7 @@ class App extends React.Component {
         <SearchBar 
           formSubmit={this.onTermSubmit}
         />
+        I have {this.state.videos.length} results.
       </div>
     );
   }
