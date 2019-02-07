@@ -33,6 +33,7 @@ class App extends React.Component {
           formSubmit={this.onTermSubmit}
         />
         I have {this.state.videos.length} results.
+        <VideoList videos={this.state.videos} />
       </div>
     );
   }
