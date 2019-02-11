@@ -8,7 +8,6 @@ import React from 'react';
 	// Provider has perpetual access to the Store
 	// Connect component created before instance of SongList
 		// Can communicate with provider through context system
-	
 
 const App = () => {
 	return <div>App</div>;
