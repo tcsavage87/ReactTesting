@@ -1,5 +1,6 @@
 import React from 'react';
 import SongList from './SongList';
+import SongDetail from './SongDetail';
 // use curly braces to import named export
 
 // Use functional component because use state-based components less with Redux
@@ -20,6 +21,9 @@ const App = () => {
 			<div className="ui row">
 				<div className="column eight wide">
 					<SongList />
+				</div>
+				<div className="column eight wide">
+					<SongDetail />
 				</div>
 			</div>
 		</div>
