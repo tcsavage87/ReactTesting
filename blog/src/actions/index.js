@@ -31,15 +31,16 @@ Redux-Thunk - middleware that aids with asynchronous action creators
 		getState - return all data within redux store
 	Wait for request to finish --> Then dispatch action manually
 
+-When using thunk, don't return any objects from inner functions inside Action Creators
+	Call dispatch manually with action, using async/await
+	Action will get dispatched once a response is received
+
 */
 
-export const fetchPosts = () => {
-	return function() {
-		const promise = jsonPlaceholder.get('/posts');
+// Defining function that will return function that gets data from API, and passes it to dispatch
 
-		return {
-			type: 'FETCH_POSTS',
-			payload: promise
-		};
-	}
+export const fetchPosts = () => async dispatch => {
+		const response = await jsonPlaceholder.get('/posts');
+
+		dispatch({ type: 'FETCH_POSTS', payload: response })
 };
