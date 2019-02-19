@@ -1,5 +1,18 @@
 import jsonPlaceholder from '../apis/jsonPlaceholder';
 
+export const fetchPosts = () => async dispatch => {
+	const response = await jsonPlaceholder.get('/posts');
+
+	dispatch({ type: 'FETCH_POSTS', payload: response.data });
+};
+
+export const fetchUser = (id) => async dispatch => {
+	const response = await jsonPlaceholder.get(`/users/${id}`);
+
+	dispatch({ type: 'FETCH_USER', payload: response.data });
+};
+
+
 /* 
 
 In redux, action creators must return plain Objects with a type property
@@ -39,8 +52,4 @@ Redux-Thunk - middleware that aids with asynchronous action creators
 
 // Defining function that will return function that gets data from API, and passes it to dispatch
 
-export const fetchPosts = () => async dispatch => {
-		const response = await jsonPlaceholder.get('/posts');
 
-		dispatch({ type: 'FETCH_POSTS', payload: response });
-};
