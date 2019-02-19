@@ -1,30 +1,52 @@
 import _ from 'lodash';
 import jsonPlaceholder from '../apis/jsonPlaceholder';
 
+export const fetchPostsAndUsers = () => async (dispatch, getState) => {
+	// Must manually dispatch results of nested action creator 
+	await dispatch(fetchPosts());
+	// Uniq returns array of unique userId values
+		// No need for await on user Id calls
+	_.uniq(_.map(getState()
+		.posts, 'userId'))
+		.forEach(id => dispatch(fetchUser(id)));
+
+	/* optionally can use lodash _.chain()
+	_.chain(getState().posts)
+		.map('userId')
+		.uniq()
+		.forEach(id => dispatch(fetchUser(id)))
+		.value();
+	*/
+};
+
 export const fetchPosts = () => async dispatch => {
 	const response = await jsonPlaceholder.get('/posts');
 
 	dispatch({ type: 'FETCH_POSTS', payload: response.data });
 };
 
+export const fetchUser = id => async dispatch => {
+	const response = await jsonPlaceholder.get(`/users/${id}`);
+
+	dispatch({ type: 'FETCH_USER', payload: response.data });
+};
+
 /* To avoid calling fetchUser with same id multiple times we can use memoize
 	-In lodash library, _.memoize(fetchUser) prevents it from being called multiple times with same argument
 		-If it is called with same argument, will just return previous results
-*/
+
+need to create external function for one-time memoization
+	-underscore indicates private fxn
 
 export const fetchUser = id => dispatch => {
 	_fetchUser(id, dispatch);
 };
 
-/* need to create external function for one-time memoization
-	-underscore indicates private fxn
-*/
-
 const _fetchUser = _.memoize(async (id, dispatch) => {
 	const response = await jsonPlaceholder.get(`/users/${id}`);
 
 	dispatch({ type: 'FETCH_USER', payload: response.data });
-});
+});*/
 
 /* 
 
