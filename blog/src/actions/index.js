@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import jsonPlaceholder from '../apis/jsonPlaceholder';
 
 export const fetchPosts = () => async dispatch => {
@@ -6,12 +7,24 @@ export const fetchPosts = () => async dispatch => {
 	dispatch({ type: 'FETCH_POSTS', payload: response.data });
 };
 
-export const fetchUser = (id) => async dispatch => {
+/* To avoid calling fetchUser with same id multiple times we can use memoize
+	-In lodash library, _.memoize(fetchUser) prevents it from being called multiple times with same argument
+		-If it is called with same argument, will just return previous results
+*/
+
+export const fetchUser = id => dispatch => {
+	_fetchUser(id, dispatch);
+};
+
+/* need to create external function for one-time memoization
+	-underscore indicates private fxn
+*/
+
+const _fetchUser = _.memoize(async (id, dispatch) => {
 	const response = await jsonPlaceholder.get(`/users/${id}`);
 
 	dispatch({ type: 'FETCH_USER', payload: response.data });
-};
-
+});
 
 /* 
 
