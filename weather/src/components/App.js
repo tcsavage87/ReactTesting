@@ -19,8 +19,9 @@ class App extends React.Component {
 	};
 
 	render() {
+		console.log(this.state.weather);
 		return (
-			<div>
+			<div className="ui container">
 				<SearchBar getWeather={this.getWeather} />
 				<SearchResults 
 					location={this.state.location} 

@@ -15,13 +15,16 @@ class SearchBar extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<form onSubmit={this.onFormSubmit}>
+			<div className="ui segment">
+				<form className="ui form" onSubmit={this.onFormSubmit}>
+					<div className="field">
+					<label>Search for your Weather</label>
 					<input 
+						placeholder="Zip, City, or State"
 						type="text"
 						onChange={this.onInputChange}
 						value={this.state.location} />
-					<label>Search for your Weather</label>
+					</div>
 				</form>
 			</div>
 		);
