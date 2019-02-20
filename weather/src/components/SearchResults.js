@@ -45,7 +45,7 @@ class SearchResults extends React.Component {
 					<h2 className="ui blue right ribbon label">Conditions at {weather.last_updated}</h2>
 					<h4>Humidity: {weather.humidity}%</h4>
 					<h4>Winds: {weather.wind_dir} {weather.wind_mph} mph</h4>
-					<h4>Visibility: {weather.vis_miles}</h4>
+					<h4>Visibility: {weather.vis_miles} mi</h4>
 				</div>
 			</div>
 		);
