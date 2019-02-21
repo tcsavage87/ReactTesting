@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ProductConsumer } from '../context';
+//PropTypes built into react
+import PropTypes from 'prop-types';
 
 // Link creates an anchor wrapper around image directing to component with matching path, as set by Route
 
@@ -39,6 +41,19 @@ class Product extends React.Component {
 		);
 	}
 }
+
+// defin propTypes to ensure data coming in is correct type
+	// If data is incorrect, will return errors
+
+Product.propTypes = {
+	product: PropTypes.shape({
+		id: PropTypes.number,
+		img: PropTypes.string,
+		title: PropTypes.string,
+		price: PropTypes.number,
+		inCart: PropTypes.bool
+	}).isRequired
+};
 
 // Styled components create an element of type styled.type with styles within template strings
 	// Use const as JSX

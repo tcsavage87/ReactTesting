@@ -16,11 +16,29 @@ const ProductContext = React.createContext();
 // Whatever is passed into Provider as value parameter will be passed down as context
 
 class ProductProvider extends React.Component {
+	// Import data/state is created as a reference to original data, and changing it will change original data
+		// Must initialize state to empty array, and later set to product values
+
 	state = {
-		products: storeProducts,
+		products: [],
 		detailProduct: detailProduct
 	}
 
+	componentDidMount() {
+		this.setProducts();
+	}
+
+	setProducts = () => {
+		let tempProducts = [];
+		storeProducts.forEach(product => {
+		// destructuring fixes reference issue
+			// Pull each object item out as variable, and push into new array
+			const singleItem = {...item};
+			tempProducts = [...tempProducts, singleItem];
+		});
+		this.setState({ products: tempProducts });
+	}
+	
 	handleDetail = () => {
 		console.log('hello from detail');
 	}
