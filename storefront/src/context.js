@@ -33,7 +33,7 @@ class ProductProvider extends React.Component {
 		storeProducts.forEach(product => {
 		// destructuring fixes reference issue
 			// Pull each object item out as variable, and push into new array
-			const singleItem = {...item};
+			const singleItem = {...product};
 			tempProducts = [...tempProducts, singleItem];
 		});
 		this.setState({ products: tempProducts });
@@ -43,8 +43,8 @@ class ProductProvider extends React.Component {
 		console.log('hello from detail');
 	}
 
-	addToCart = () => {
-		console.log('hello from addToCart');
+	addToCart = id => {
+		console.log(`Add ${id} to cart`);
 	}
 
 	render() {
