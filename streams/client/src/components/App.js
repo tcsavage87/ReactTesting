@@ -1,38 +1,31 @@
 import React from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+import StreamCreate from './streams/StreamCreate';
+import StreamDelete from './streams/StreamDelete';
+import StreamEdit from './streams/StreamEdit';
+import StreamList from './streams/StreamList';
+import StreamShow from './streams/StreamShow';
+import Header from './Header';
 
 // Avoid using anchor tags to navigate with React Router
 	// With anchor tag, browser sends new request, receives new index.html file, dumps old React state data
 
 // Use Link Component in place of anchor tags
 
-const PageOne = () => {
-	return (
-		<div>PageOne
-			<Link to="/pagetwo">Navigate to Page Two</Link>
-		</div>
-	);
-};
-
-const PageTwo = () => {
-	return (
-		<div>
-			PageTwo
-			<button>Click Me!</button>
-			<Link to="/">Navigate to Page Two</Link>
-		</div>
-	);
-};
-
 // Exact keyword is used to ensure Route is only displayed with exact URL matching path
 
+// To show on all pages, define content outside of BrowserRouter
 const App = () => {
 	return (
-		<div>
+		<div className="ui container">
 			<BrowserRouter>
 				<div>
-					<Route path="/" exact component={PageOne} />
-					<Route path="/pagetwo" component={PageTwo} />
+					<Header />
+					<Route path="/" exact component={StreamList} />
+					<Route path="/streams/new" exact component={StreamCreate} />
+					<Route path="/streams/edit" exact component={StreamEdit} />
+					<Route path="/streams/delete" exact component={StreamDelete} />
+					<Route path="/streams/show" exact component={StreamShow} />
 				</div>
 			</BrowserRouter>
 		</div>
