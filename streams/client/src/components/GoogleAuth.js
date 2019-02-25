@@ -1,11 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { signIn, signOut } from '../actions';
 import key from '../gapi';
 
 // use .then() to invooke function once library has initialized
 
 class GoogleAuth extends React.Component {
-	state = { isSignedIn: null };
-
 	componentDidMount() {
 		window.gapi.load('client:auth2', () => {
 			window.gapi.client.init({
@@ -13,7 +13,7 @@ class GoogleAuth extends React.Component {
 				scope: 'email'
 			}).then(() => {
 				this.auth = window.gapi.auth2.getAuthInstance();
-				this.onAuthChange();
+				this.onAuthChange(this.auth.isSignedIn.get());
 				// Listen for change on isSignedIn (event listener)
 				this.auth.isSignedIn.listen(this.onAuthChange);
 			});
@@ -21,12 +21,16 @@ class GoogleAuth extends React.Component {
 	}
 
 	// Add listen method to isSignedIn to listen for changes, when changes occur call onAuthChange to setState
-	onAuthChange = () => {
-		this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+	onAuthChange = (isSignedIn) => {
+		if (isSignedIn) {
+			this.props.signIn(this.auth.currentUser.get().getId());
+		} else {
+			this.props.signOut();
+		}
 	};
 
 	toggleSignIn = () => {
-		if (this.state.isSignedIn) {
+		if (this.props.isSignedIn) {
 			this.auth.signOut();
 		} else {
 			this.auth.signIn();
@@ -34,9 +38,9 @@ class GoogleAuth extends React.Component {
 	};
 
 	renderAuthButton() {
-		if (this.state.isSignedIn === null) {
+		if (this.props.isSignedIn === null) {
 			return null;
-		} else if (this.state.isSignedIn) {
+		} else if (this.props.isSignedIn) {
 			return (
 				<button onClick={this.toggleSignIn} className="ui red google button">
 					<i className="google icon" />
@@ -58,5 +62,15 @@ class GoogleAuth extends React.Component {
 	}
 }
 
+const mapStateToProps = state => {
+	console.log(state);
+	return { isSignedIn: state.auth.isSignedIn }
+}
 
-export default GoogleAuth;
+export default connect(mapStateToProps, {
+	signIn: signIn,
+	signOut: signOut
+})(GoogleAuth);
+
+
+
