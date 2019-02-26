@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { createStream } from '../../actions';
 
 // Field is React Component, reduxForm is a fxn that connects actioncreator to component
 	// Field doesn't have restrictions on what can be shown, use props to govern 
@@ -36,7 +38,8 @@ class StreamCreate extends React.Component {
 		);
 	}
 
-	onSubmit(formValues) {
+	onSubmit = (formValues) => {
+		this.props.createStream(formValues);
 		console.log(formValues);
 	}
 
@@ -70,8 +73,14 @@ const validate = (formValues) => {
 	return errors;
 };
 
+
+
 // reduxForm takes single object, form: 'nameOfForm'
-export default reduxForm({
+const formWrapped = reduxForm({
 	form: 'streamCreate',
 	validate: validate
 })(StreamCreate);
+
+export default connect(null, {
+	createStream: createStream
+})(formWrapped)
