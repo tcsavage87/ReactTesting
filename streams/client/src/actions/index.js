@@ -1,4 +1,5 @@
 import streams from '../apis/streams';
+import history from '../history';
 import { 
 	SIGN_IN, 
 	SIGN_OUT, 
@@ -28,7 +29,9 @@ export const createStream = formValues => async (dispatch, getState) => {
 	const response = await streams.post('/streams', {...formValues, userId});
 	// Manually dispatch results from nested action creator
 	dispatch({ type: CREATE_STREAM, payload: response.data });
-	// Programmatic navigaton back to root route
+	// Implement Programmatic navigaton back to root route
+		// use .push to direct to path
+	history.push('/');
 };
 
 export const fetchStreams = () => async dispatch => {
