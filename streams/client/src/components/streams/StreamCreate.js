@@ -74,7 +74,6 @@ const validate = (formValues) => {
 };
 
 
-
 // reduxForm takes single object, form: 'nameOfForm'
 const formWrapped = reduxForm({
 	form: 'streamCreate',
