@@ -22,10 +22,13 @@ export const signOut = () => {
 	};
 };
 
-export const createStream = formValues => async dispatch => {
-	const response = await streams.post('/streams', formValues);
+export const createStream = formValues => async (dispatch, getState) => {
+	const { userId } = getState().auth;
+	// Post values from form as well as userId
+	const response = await streams.post('/streams', {...formValues, userId});
 	// Manually dispatch results from nested action creator
 	dispatch({ type: CREATE_STREAM, payload: response.data });
+	// Programmatic navigaton back to root route
 };
 
 export const fetchStreams = () => async dispatch => {
