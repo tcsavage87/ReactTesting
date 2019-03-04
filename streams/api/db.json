@@ -1,9 +1,31 @@
 {
   "streams": [
     {
-      "title": "Stream Test",
-      "description": "test stream",
-      "id": 1
+      "title": "test 4",
+      "description": "test 4",
+      "id": 4
+    },
+    {
+      "title": "ID Stream",
+      "description": "New Stream with User ID",
+      "id": 5
+    },
+    {
+      "title": "behavior",
+      "description": "expect that",
+      "id": 6
+    },
+    {
+      "title": "programmatic",
+      "description": "redirection!",
+      "userId": "107790144731917210368",
+      "id": 7
+    },
+    {
+      "title": "Stream refactor",
+      "description": "testing!",
+      "userId": "107790144731917210368",
+      "id": 8
     }
   ]
 }
