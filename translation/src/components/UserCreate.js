@@ -2,9 +2,9 @@ import React from 'react';
 import Field from './Field';
 import Button from './Button';
 
-const UserCreate = (props) => {
+const UserCreate = props => {
 	return (
-		<div>
+		<div className="ui form">
 			<Field language={props.language} />
 			<Button language={props.language} />
 		</div>
