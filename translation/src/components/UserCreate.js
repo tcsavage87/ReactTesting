@@ -2,12 +2,11 @@ import React from 'react';
 import Field from './Field';
 import Button from './Button';
 
-const UserCreate = () => {
+const UserCreate = (props) => {
 	return (
 		<div>
-			UserCreate
-			<Field />
-			<Button />
+			<Field language={props.language} />
+			<Button language={props.language} />
 		</div>
 	);
 };
