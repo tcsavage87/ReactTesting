@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import history from '../history';
 
 // use portals to display components as direct descendants of HTML elements other than div#root
 	// Primarily used for modals or 3rd party libraries
@@ -11,7 +10,7 @@ import history from '../history';
 const Modal = props => {
 	return ReactDOM.createPortal(
 		// include onClick to redirect when user clicks outside of modal
-		<div onClick={() => history.push('/')} className="ui dimmer modals visible active">
+		<div onClick={props.onDismiss} className="ui dimmer modals visible active">
 			<div onClick={e => e.stopPropagation()} className="ui standard modal visible active">
 				<div className="header">{props.title}</div>
 				<div className="content">{props.content}</div>
