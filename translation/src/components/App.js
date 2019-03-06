@@ -1,9 +1,10 @@
 import React from 'react';
+import { LanguageStore } from '../contexts/LanguageContext';
+import { ColorStore } from '../contexts/ColorContext';
 import LanguageSelector from './LanguageSelector';
 import ColorSelector from './ColorSelector';
 import UserCreate from './UserCreate';
-import LanguageContext from '../contexts/LanguageContext';
-import ColorContext from '../contexts/ColorContext';
+import ColorContext from '../contexts/ColorContext'; 
 
 // Context API
 	// Use context object to supply data to nested children
@@ -17,29 +18,17 @@ import ColorContext from '../contexts/ColorContext';
 // Provider creates a unique Context pipe of data to share with nested components on each new instance within App
 
 class App extends React.Component {
-	state = { language: 'english', color: 'red' }
-
-	onColorChange = (color) => {
-		console.log(color);
-		this.setState({ color });
-	};
-
-	onLanguageChange = (language) => {
-		console.log(language);
-		this.setState({ language });
-	};
-
 	render() {
 	    return (
 	      	<div className="ui container">
-	        	<LanguageSelector onLanguageChange={this.onLanguageChange} />
-	        	<ColorSelector onColorChange={this.onColorChange} />
-	        	<ColorContext.Provider value={this.state.color}>
-		        	<LanguageContext.Provider value={this.state.language}>
-		        		<UserCreate />
-		      		</LanguageContext.Provider>
-		      	</ColorContext.Provider>
-	      	</div>
+	      		<LanguageStore>
+		        	<LanguageSelector />
+		        	<ColorStore>
+			        	<ColorSelector />
+				        	<UserCreate />
+				    </ColorStore>
+			    </LanguageStore>
+		    </div>
 	    );
 	}
 }
