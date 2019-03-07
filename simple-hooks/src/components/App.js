@@ -1,27 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class App extends React.Component {
-	state = { resource: 'posts' };
+const App = () => {
+	// array destructuring - pulls first/second elements out of right side
+		// Calling useState returns array with 2 elements inside
+		// Take first element and assign to resource - currentValue
+		// Second element assigned to setResource - setCurrentValue
+			// Equivalent to calling setState
+	// Pass argument of initialValue into useState fxn
 
-	handleResource = (resource) => {
-		this.setState({ resource });
+	const [resource, setResource] = useState('posts');
+
+	const handleResource = (name) => {
+		setResource(name);
 	}
-
-	render() {
-		return (
+	
+	return (
+		<div>
 			<div>
-				<div>
-					<button onClick={() => this.handleResource('posts')}>
-						Posts
-					</button>
-					<button onClick={() => this.handleResource('todos')}>
-						Todos
-					</button>
-				</div>
-				{this.state.resource}
+				<button onClick={() => handleResource('posts')}>
+					Posts
+				</button>
+				<button onClick={() => handleResource('todos')}>
+					Todos
+				</button>
 			</div>
-		);
-	}
+			{resource}
+		</div>
+	);	
 };
 
 export default App;
