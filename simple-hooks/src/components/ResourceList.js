@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const ResourceList = ({ resource }) => {
+// Can extract logic into separate function, allows for reusable code
+const useResources = (resource) => {
 	// Initialization of state
 	const [resources, setResources] = useState([]);
-
-	// jsonPlaceholder request
-	const fetchResource = async resource => {
-		const response = await axios.get(`https://jsonplaceholder.typicode.com/${resource}`);
-		setResources(response.data);
-	};
 
 	// useEffect - called with a function, function is called anytime component is rendered to screen and updated
 		// Replicates componentDidMount and componentDidUpdate
@@ -19,12 +14,27 @@ const ResourceList = ({ resource }) => {
 
 	useEffect(
 		() => {
-			fetchResource(resource);
+			(async resource => {
+				const response = await axios.get(
+					`https://jsonplaceholder.typicode.com/${resource}`
+				);
+
+				setResources(response.data);
+			})(resource);
 		}, 
 		[resource]
 	);
 
-	return <div>{resources.length}</div>;
+	return resources;
+};
+
+
+const ResourceList = ({ resource }) => {
+	const resources = useResources(resource);
+	
+	return <ul>{resources.map(record => (
+			<li key={record.id}>{record.title}</li>
+	))}</ul>;
 };
 
 export default ResourceList;
