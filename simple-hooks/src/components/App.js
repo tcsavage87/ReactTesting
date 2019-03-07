@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import ResourceList from './ResourceList';
 
 const App = () => {
 	// array destructuring - pulls first/second elements out of right side
-		// Calling useState returns array with 2 elements inside
+	// Calling useState returns array with 2 elements inside
 		// Take first element and assign to resource - currentValue
 		// Second element assigned to setResource - setCurrentValue
 			// Equivalent to calling setState
-	// Pass argument of initialValue into useState fxn
+		// Pass argument of initialValue into useState fxn
+	// Can call useState as unlimited times in a component, once for each individual state value to set
 
 	const [resource, setResource] = useState('posts');
 
@@ -24,7 +26,7 @@ const App = () => {
 					Todos
 				</button>
 			</div>
-			{resource}
+			<ResourceList resource={resource} />
 		</div>
 	);	
 };
