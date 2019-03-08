@@ -1,21 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
 import Loader from './Loader';
+import useLocation from './useLocation';
 
 const App = () => {
-	const [lat, setLat] = useState(null);
-	const [errorMessage, setErrorMessage] = useState('');
-
-	useEffect(() => {
-		window.navigator.geolocation.getCurrentPosition(
-			position => setLat(position.coords.latitude),
-			err => setErrorMessage(err.message)
-		);
-	}, []);
+	const [lat, errorMessage] = useLocation();
 
 	let content;
-
 	if (errorMessage) {
 		content = <div>Error: {errorMessage}</div>;
 	} else if (lat) {
@@ -25,7 +17,7 @@ const App = () => {
 	}
 
 	return <div className="border red">{content}</div>;
-}
+};
 
 ReactDOM.render(<App />, document.querySelector('#root'));
 
