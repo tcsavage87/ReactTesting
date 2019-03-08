@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ResourceList from './ResourceList';
+import UserList from './UserList';
 
 const App = () => {
 	// array destructuring - pulls first/second elements out of right side
@@ -18,6 +19,7 @@ const App = () => {
 	
 	return (
 		<div>
+			<UserList />
 			<div>
 				<button onClick={() => handleResource('posts')}>
 					Posts
